@@ -15,7 +15,7 @@ of basic linux system administration you should stop and turn around now.**
 Falcon runs on a wide range of operating systems, so pick whichever you are most comfortable using.
 
 ::: warning
-Pterodactyl does not support most OpenVZ systems due to incompatibilities with Docker. If you are planning on running
+Falcon does not support most OpenVZ systems due to incompatibilities with Docker. If you are planning on running
 this software on an OpenVZ based system you will &mdash; most likely &mdash; not be successful.
 :::
 
@@ -100,7 +100,7 @@ Now that all of the files have been downloaded we need to configure some core as
 
 ::: tip Database Configuration
 You will need a database setup and a user with the correct permissions created for that database before
-continuing any further. See below to create a user and database for your Pterodactyl panel quickly. To find more detailed information
+continuing any further. See below to create a user and database for your Falcon panel quickly. To find more detailed information
 please have a look at [Setting up MySQL](/tutorials/mysql_setup.html).
 
 ```sql
@@ -225,7 +225,7 @@ then paste the line below.
 ### Create Queue Worker
 
 Next you need to create a new systemd worker to keep our queue process running in the background. This queue is responsible
-for sending emails and handling many other background tasks for Pterodactyl.
+for sending emails and handling many other background tasks for Falcon.
 
 Create a file called `pteroq.service` in `/etc/systemd/system` with the contents below.
 
