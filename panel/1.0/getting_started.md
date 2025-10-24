@@ -12,7 +12,7 @@ of basic linux system administration you should stop and turn around now.**
 
 ## Picking a Server OS
 
-Pterodactyl runs on a wide range of operating systems, so pick whichever you are most comfortable using.
+Falcon runs on a wide range of operating systems, so pick whichever you are most comfortable using.
 
 ::: warning
 Pterodactyl does not support most OpenVZ systems due to incompatibilities with Docker. If you are planning on running
