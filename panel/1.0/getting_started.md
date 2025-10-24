@@ -2,17 +2,13 @@
 
 [[toc]]
 
-Pterodactyl Panel is designed to run on your own web server. You will need to have root access to your server in order to run and use this panel.
+Falcon Panel is designed to run on your own web server. You will need to have root access to your server in order to run and use this panel.
 
 You are expected to understand how to read documentation to use this Panel. We have spent many hours detailing how to install or upgrade our
 software; take some time and read rather than copy and pasting and then complaining when things do not work. This panel does
 not exist as a drag-and-drop service to run your servers. It is a highly complex system requiring multiple dependencies and
 administrators willing to spend some time learning how to use it. **If you expect to be able to install this with no understanding
 of basic linux system administration you should stop and turn around now.**
-
-::: tip Looking for something simple to setup?
-[WISP](https://wisp.gg) is a Pterodactyl powered SaaS suitable for enterprise and personal use. Offering all the features without the setup hassle, and fully compatible with Pterodactyl eggs. Comparable to MultiCraft or TCAdmin while offering new and unique features. Click here to [learn more](https://wisp.gg/features).
-:::
 
 ## Picking a Server OS
 
@@ -83,8 +79,8 @@ The first step in this process is to create the folder where the panel will live
 newly created folder. Below is an example of how to perform this operation.
 
 ``` bash
-mkdir -p /var/www/pterodactyl
-cd /var/www/pterodactyl
+mkdir -p /var/www/falcon
+cd /var/www/falcon
 ```
 
 Once you have created a new directory for the Panel and moved into it you'll need to download the Panel files. This
@@ -93,7 +89,7 @@ and then set the correct permissions on the `storage/` and `bootstrap/cache/` di
 allow us to store files as well as keep a speedy cache available to reduce load times.
 
 ``` bash
-curl -Lo panel.tar.gz https://github.com/pterodactyl/panel/releases/latest/download/panel.tar.gz
+curl -Lo panel.tar.gz https://github.com/FalconPanel/panel/releases/latest/download/panel.tar.gz
 tar -xzvf panel.tar.gz
 chmod -R 755 storage/* bootstrap/cache/
 ```
@@ -108,7 +104,7 @@ continuing any further. See below to create a user and database for your Pteroda
 please have a look at [Setting up MySQL](/tutorials/mysql_setup.html).
 
 ```sql
-# If using MariaDB (v11.0.0+) (This is the default when installing Pterodactyl by following the documentation.)
+# If using MariaDB (v11.0.0+) (This is the default when installing Falcon by following the documentation.)
 mariadb -u root -p
 
 # If using MySQL
@@ -117,9 +113,9 @@ mysql -u root -p
 ```sql
 
 # Remember to change 'yourPassword' below to be a unique password
-CREATE USER 'pterodactyl'@'127.0.0.1' IDENTIFIED BY 'yourPassword';
+CREATE USER 'falcon'@'127.0.0.1' IDENTIFIED BY 'yourPassword';
 CREATE DATABASE panel;
-GRANT ALL PRIVILEGES ON panel.* TO 'pterodactyl'@'127.0.0.1' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON panel.* TO 'falcon'@'127.0.0.1' WITH GRANT OPTION;
 exit
 ```
 
@@ -133,7 +129,7 @@ cp .env.example .env
 COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader
 
 # Only run the command below if you are installing this Panel for
-# the first time and do not have any Pterodactyl Panel data in the database.
+# the first time and do not have any Falcon Panel data in the database.
 php artisan key:generate --force
 ```
 
@@ -144,7 +140,7 @@ Store it somewhere safe - not just on your server. If you lose it, all encrypted
 To grab your `APP_KEY`, open a terminal and run the following in your panel directory:
 
 ```bash
-grep APP_KEY /var/www/pterodactyl/.env
+grep APP_KEY /var/www/falcon/.env
 ```
 
 You should see something like:
@@ -164,7 +160,7 @@ Do not keep it only on the server. If you lose this key, your encrypted data is 
 
 ### Environment Configuration
 
-Pterodactyl's core environment is easily configured using a few different CLI commands built into the app. This step
+Falcon's core environment is easily configured using a few different CLI commands built into the app. This step
 will cover setting up things such as sessions, caching, database credentials, and email sending.
 
 ``` bash
@@ -202,13 +198,13 @@ use them correctly.
 
 ``` bash
 # If using NGINX, Apache or Caddy (not on RHEL / Rocky Linux / AlmaLinux)
-chown -R www-data:www-data /var/www/pterodactyl/*
+chown -R www-data:www-data /var/www/falcon/*
 
 # If using NGINX on RHEL / Rocky Linux / AlmaLinux
-chown -R nginx:nginx /var/www/pterodactyl/*
+chown -R nginx:nginx /var/www/falcon/*
 
 # If using Apache on RHEL / Rocky Linux / AlmaLinux
-chown -R apache:apache /var/www/pterodactyl/*
+chown -R apache:apache /var/www/falcon/*
 ```
 
 ## Queue Listeners
@@ -218,12 +214,12 @@ You will need to setup the queue worker for these actions to be processed.
 
 ### Crontab Configuration
 
-The first thing we need to do is create a new cronjob that runs every minute to process specific Pterodactyl tasks, such
+The first thing we need to do is create a new cronjob that runs every minute to process specific Falcon tasks, such
 as session cleanup and sending scheduled tasks to daemons. You'll want to open your crontab using `sudo crontab -e` and
 then paste the line below.
 
 ```bash
-* * * * * php /var/www/pterodactyl/artisan schedule:run >> /dev/null 2>&1
+* * * * * php /var/www/falcon/artisan schedule:run >> /dev/null 2>&1
 ```
 
 ### Create Queue Worker
@@ -234,11 +230,11 @@ for sending emails and handling many other background tasks for Pterodactyl.
 Create a file called `pteroq.service` in `/etc/systemd/system` with the contents below.
 
 ``` text
-# Pterodactyl Queue Worker File
+# Falcon Queue Worker File
 # ----------------------------------
 
 [Unit]
-Description=Pterodactyl Queue Worker
+Description=Falcon Queue Worker
 After=redis-server.service
 
 [Service]
@@ -247,7 +243,7 @@ After=redis-server.service
 User=www-data
 Group=www-data
 Restart=always
-ExecStart=/usr/bin/php /var/www/pterodactyl/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3
+ExecStart=/usr/bin/php /var/www/falcon/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3
 StartLimitInterval=180
 StartLimitBurst=30
 RestartSec=5s
@@ -279,7 +275,7 @@ sudo systemctl enable --now pteroq.service
 
 ### Telemetry
 
-Since 1.11, Pterodactyl will collect anonymous telemetry to help us better understand how the
+Since 1.11, Falcon will collect anonymous telemetry to help us better understand how the
 software is being used. To learn more about this feature and to opt-out, please see our [Telemetry](./additional_configuration.md#telemetry)
 documentation. Make sure to continue with the rest of the installation process.
 
