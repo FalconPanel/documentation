@@ -7,7 +7,6 @@
                         <img class="max-w-xl w-full inline-block" src="https://cdn.pterodactyl.io/logos/new/pterodactyl_logo_transparent.png" alt="Pterodactyl">
                     </div>
                     <div class="mt-4">
-                        <!-- <a class="btn hidden md:inline-block" href="https://demo.pterodactyl.io" target="_blank" rel="nofollow noopener">Demo</a> -->
                         <router-link class="btn inline-block" to="/panel/getting_started.html">Let's Get Started!</router-link>
                     </div>
                 </div>
@@ -15,10 +14,10 @@
         </div>
         <div class="section bg-white">
             <div class="container text-center">
-                <h1 class="text-blue mb-4">Pterodactyl Panel</h1>
+                <h1 class="text-blue mb-4">Falcon Panel</h1>
                 <h3 class="border-0 font-normal leading-normal mx-auto" style="max-width: 50rem">
-                    Pterodactyl&reg; is a free, open-source game server management panel built with PHP, React, and Go.
-                    Designed with security in mind, Pterodactyl runs all game servers in isolated Docker containers
+                    Falcon&reg; is a free, open-source game server management panel built with PHP, React, and Go.
+                    Designed with security in mind, Falcon runs all game servers in isolated Docker containers
                     while exposing a beautiful and intuitive UI to end users.
                 </h3>
                 <h3 class="border-0 leading-normal mx-auto mt-4" style="max-width: 50rem">
@@ -29,7 +28,7 @@
         </div>
         <div class="section bg-blue text-grey-lightest">
             <div class="container text-center">
-                <h1 class="mb-4">Why Pterodactyl&reg;</h1>
+                <h1 class="mb-4">Why Falcon&reg;</h1>
                 <div class="flex flex-wrap">
                     <div class="feature">
                         <span><i class="icon icon-lock"></i></span>
@@ -49,7 +48,7 @@
                     <div class="feature">
                         <span><i class="icon icon-wallet"></i></span>
                         <h3>Free & Open Source</h3>
-                        <p>Pterodactyl is 100% free and licensed under a MIT license. All of our code is completely open source as well.</p>
+                        <p>Falcon is 100% free and licensed under a MIT license. All of our code is completely open source as well.</p>
                     </div>
                     <div class="feature">
                         <span><i class="icon icon-browser"></i></span>
@@ -109,10 +108,10 @@
         <div class="section bg-blue text-grey-lightest">
             <div class="container text-center">
                 <h1>Get Started</h1>
-                <p class="m-4">Ready to fly on the Pterodactyl?</p>
+                <p class="m-4">Ready to fly on the Falcon?</p>
                 <div class="mt-4">
                     <router-link class="btn inline-block" to="/project/introduction.html">About the project</router-link>
-                    <a class="btn inline-block" href="https://discord.gg/pterodactyl">Discord</a>
+                    <a class="btn inline-block" href="https://discord.gg/falcon-panel">Discord</a>
                 </div>
             </div>
         </div>
@@ -123,16 +122,6 @@
                 </div>
                 <div class="text-left md:flex">
                     <div class="flex-none w-full md:w-1/2 md:pr-12">
-                        <p class="my-4">
-                            Since 2015 Pterodactyl&reg; has been delivering robust, performant, and secure software that allows
-                            individuals, networks, and hosting companies to run game servers at scale; easily. Best of all?
-                            No exorbitant monthly costs.
-                        </p>
-                        <p class="my-4">
-                            Take the plunge today and discover why thousands of users trust Pterodactyl&reg; to manage their
-                            game servers.
-                        </p>
-                    </div>
                     <div class="hidden md:block md:flex-1 md:pr-12">
                         <p><a class="text-grey-lightest" href="https://github.com/pterodactyl">GitHub</a></p>
                         <p><a class="text-grey-lightest" href="https://github.com/sponsors/matthewpi">Sponsor</a></p>
@@ -141,12 +130,12 @@
                         <p><a class="text-grey-lightest" href="https://pterodactyleggs.com">Additional Game Configurations</a></p>
                     </div>
                     <div class="text-center mt-8 md:flex-1 md:mt-0">
-                        <a href="https://discord.gg/pterodactyl" target="_blank" rel="nofollow noopener">
+                        <a href="https://discord.gg/falcon-panel" target="_blank" rel="nofollow noopener">
                             <img src="https://cdn.pterodactyl.io/site-assets/discord.png" class="w-3/4">
                         </a>
                     </div>
                 </div>
-                <div class="footer">MIT Licensed | Pterodactyl&reg; Copyright &copy; Dane Everitt and contributors</div>
+                <div class="footer">MIT Licensed | Falcon&reg; Copyright &copy; Brynley Portillo and contributors</div>
             </div>
         </div>
     </div>
